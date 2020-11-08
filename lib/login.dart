@@ -41,7 +41,7 @@ class _State extends State<MyApp> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
                     child: Image.asset(
-                      'images/miu.jpg',
+                      'images/MIU.jpg',
                       width: 240.4,
                       height: 80,
                     )),
@@ -99,8 +99,8 @@ class _State extends State<MyApp> {
                         //signup page
                         Navigator.push(
                           context,
-                          PageRouteBuilder<void>(pageBuilder: () => Signup()),
-                        );
+                          MaterialPageRoute(builder: (context) => Signup()));
+                        
                       },
                     )
                   ],

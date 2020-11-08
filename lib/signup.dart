@@ -34,7 +34,7 @@ class _State extends State<Signup> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
                     child: Image.asset(
-                      'images/miu.jpg',
+                      'images/MIU.jpg',
                       width: 240.4,
                       height: 80,
                     )),
