@@ -1,27 +1,43 @@
 
 import 'package:flutter/material.dart';
+import 'signup.dart';
+import 'login.dart';
 
 void main() => runApp(new App());
+
+GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
 class App extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => MyApp();
 }
 class MyApp extends State<App> {
-  int counter = 0;
-  /* This widget is the root
-      of your application.*/
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        key: _drawerKey,
         appBar: AppBar(
-        title: Text('MIU lost And Found'),
-        backgroundColor: Colors.red,
+          leading:IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+                  _drawerKey.currentState.openDrawer();
+                }),
+          
+          title: Text('MIU lost And Found'),
+          actions: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal:16),
+              child: Icon(Icons.search),
+              )
+          ],
+          backgroundColor: Colors.red,
       ),
+      
       body: 
-       
        Column(children: [
-        Image.asset(
+         Padding(padding: EdgeInsets.all(8)),
+         Image.asset(
                 'images/MIU.jpg',
                 width: 350.4,
                 height: 200,
@@ -57,9 +73,116 @@ Row(
       ),
       ],
       )
-      ],)
-        
+      ],
       ),
-      );
+         drawer:Builder(
+           builder:(context)=> Drawer(
+           child:ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                  image: AssetImage("images/MIU.jpg",),
+                  fit: BoxFit.cover
+                  )
+              ),
+              ),
+              ListTile(
+                leading: Icon(Icons.home),
+                    title: Text(
+                      'Home Page',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    onTap: () {          
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => App()),
+                      );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => App(),
+                          ));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.login),
+                    title: Text(
+                      'Login',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Login(),
+                          ));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.account_circle),
+                    title: Text(
+                      'Signup',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Signup(),
+                          ));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.image),
+                    title: Text(
+                      'Samples',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.category),
+                    title: Text(
+                      'Categories',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.info),
+                    title: Text(
+                      'About Us',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+            ],
+          )
+          ), 
+      ),
+      ));
 }
 }

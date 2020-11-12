@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MaterialApp(
+    home: Signup(),
+  ));
+}
+
 class Signup extends StatefulWidget {
   @override
   _State createState() => _State();

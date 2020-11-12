@@ -3,16 +3,16 @@ import 'signup.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MyApp(),
+    home: Login(),
   ));
 }
 
-class MyApp extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
   _State createState() => _State();
 }
 
-class _State extends State<MyApp> {
+class _State extends State<Login> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
