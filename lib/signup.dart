@@ -12,8 +12,30 @@ class Signup extends StatefulWidget {
 }
 
 class _State extends State<Signup> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController repeatPasswordController = TextEditingController();
+
+@override
+  void initState(){
+    super.initState();
+    fullNameController.addListener(() {print("Name Text Field:${fullNameController.text}");});
+    userNameController.addListener(() {print("Name Text Field:${userNameController.text}");});
+    passwordController.addListener(() {print("Name Text Field:${passwordController.text}");});
+    emailController.addListener(() {print("Name Text Field:${emailController.text}");});
+  }
+  
+
+  @override
+  void dispose(){
+    fullNameController.dispose();
+    userNameController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +67,10 @@ class _State extends State<Signup> {
                       height: 80,
                     )),
                 Container(
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(10),
                   child: TextField(
-                    controller: nameController,
+                    autofocus: true,
+                    controller: fullNameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Full Name',
@@ -57,7 +80,7 @@ class _State extends State<Signup> {
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
-                    controller: nameController,
+                    controller: userNameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'User Name',
@@ -67,7 +90,7 @@ class _State extends State<Signup> {
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
-                    controller: nameController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email ',
@@ -89,7 +112,7 @@ class _State extends State<Signup> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     obscureText: true,
-                    controller: passwordController,
+                    controller: repeatPasswordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Retype Password',
@@ -104,10 +127,16 @@ class _State extends State<Signup> {
                       color: Colors.black,
                       child: Text('Sign up'),
                       onPressed: () {
-                        print(nameController.text);
-                        print(passwordController.text);
+                         return showDialog(context: context,
+                        builder:(context){
+                          return AlertDialog(
+                            content:Text(' ${fullNameController.text}\n ${userNameController.text}\n ${emailController.text}\n ${passwordController.text}')
+                          );
+                      });
+                      
                       },
-                    )),
+                      )
+                      ),
               ],
             )));
   }

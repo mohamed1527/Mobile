@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
+import 'forget_form.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -15,6 +16,24 @@ class Login extends StatefulWidget {
 class _State extends State<Login> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.addListener(() {
+      print("Name Text Field:${nameController.text}");
+    });
+    passwordController.addListener(() {
+      print("Name Text Field:${passwordController.text}");
+    });
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +100,13 @@ class _State extends State<Login> {
                       color: Colors.black,
                       child: Text('Login'),
                       onPressed: () {
-                        print(nameController.text);
-                        print(passwordController.text);
+                        return showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                  content: Text(
+                                      ' ${nameController.text}\n ${passwordController.text}'));
+                            });
                       },
                     )),
                 Container(
@@ -97,10 +121,8 @@ class _State extends State<Login> {
                       ),
                       onPressed: () {
                         //signup page
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Signup()));
-                        
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Signup()));
                       },
                     )
                   ],

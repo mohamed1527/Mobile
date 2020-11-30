@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
 
 void main() => runApp(MyApp());
 
@@ -6,25 +7,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, //yshyl el 3alama
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           backgroundColor: Colors.black,
         ),
-        body: MyCustomForm(),
+        body: Forgetpassword(),
       ),
     );
   }
 }
 
-class MyCustomForm extends StatefulWidget {
+class Forgetpassword extends StatefulWidget {
   @override
   MyCustomFormState createState() {
     return MyCustomFormState();
   }
 }
 
-class MyCustomFormState extends State<MyCustomForm> {
+class MyCustomFormState extends State<Forgetpassword> {
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -43,7 +45,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 textScaleFactor: 1.8,
               ),
               FittedBox(
-                fit: BoxFit.contain, // otherwise the logo will be tiny
+                fit: BoxFit.contain,
                 child: Icon(
                   Icons.lock,
                   size: 100.0,
@@ -68,7 +70,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                       borderRadius: BorderRadius.circular(3.0),
                       side: BorderSide(color: Colors.black)),
                   child: Text('Reset'),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Login()));
+                  },
                 )),
           )
         ],
