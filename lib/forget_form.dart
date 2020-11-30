@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
 import 'login.dart';
 
 void main() => runApp(MyApp());
@@ -55,6 +56,9 @@ class MyCustomFormState extends State<Forgetpassword> {
             ],
           ),
           TextFormField(
+            validator: (value) => EmailValidator.validate(value)
+                ? null
+                : "Please enter a valid email",
             decoration: const InputDecoration(
               icon: const Icon(Icons.email),
               labelText: 'Email ',
