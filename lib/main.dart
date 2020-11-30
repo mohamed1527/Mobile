@@ -15,6 +15,7 @@ class MyApp extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primaryColor:Colors.red[900]),
       home: Scaffold(
         key: _drawerKey,
         appBar: AppBar(
@@ -25,13 +26,14 @@ class MyApp extends State<App> {
                 }),
           
           title: Text('MIU lost And Found'),
+          
           actions: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal:16),
               child: Icon(Icons.search),
               )
           ],
-          backgroundColor: Colors.red,
+          
       ),
       
       body: 

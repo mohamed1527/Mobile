@@ -5,6 +5,7 @@ void main() {
     home: Signup(),
   ));
 }
+final _formKey = GlobalKey<FormState>();
 
 class Signup extends StatefulWidget {
   @override
@@ -42,9 +43,11 @@ class _State extends State<Signup> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Sign up'),
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
-        body: Padding(
+        body: Form(
+          key: _formKey,
+          child:Padding(
             padding: EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
@@ -54,7 +57,7 @@ class _State extends State<Signup> {
                     child: Text(
                       'Miu Lost and Found',
                       style: TextStyle(
-                          color: Colors.red,
+                          color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.w500,
                           fontSize: 30),
                     )),
@@ -68,55 +71,88 @@ class _State extends State<Signup> {
                     )),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
                     autofocus: true,
                     controller: fullNameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Full Name',
                     ),
+                    validator: (value){
+                      if(value.isEmpty){
+                        return 'Please enter FullName';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
                     controller: userNameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'User Name',
+                      labelText: 'User Name',  
                     ),
+                    validator: (value){
+                      if(value.isEmpty){
+                        return 'Please enter UserName';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email ',
                     ),
+                    validator: (value){
+                      if(value.isEmpty || !value.contains("@miuegypt") || !value.endsWith(".edu.eg")){
+                        return 'Please enter email';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
+                  child: TextFormField(
                     obscureText: true,
                     controller: passwordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                     ),
+                    validator: (value){
+                      if(value.isEmpty){
+                        return 'Please enter Password';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
+                  child: TextFormField(
                     obscureText: true,
                     controller: repeatPasswordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Retype Password',
                     ),
+                    validator: (value){
+                      if(value.isEmpty){
+                        return 'Please enter UserName';
+                      }
+                      if(value != passwordController.text){
+                        return 'Password are not matching';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Container(
@@ -124,20 +160,27 @@ class _State extends State<Signup> {
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: RaisedButton(
                       textColor: Colors.white,
-                      color: Colors.black,
+                      color: Theme.of(context).primaryColor,
                       child: Text('Sign up'),
                       onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
+  
                          return showDialog(context: context,
                         builder:(context){
                           return AlertDialog(
                             content:Text(' ${fullNameController.text}\n ${userNameController.text}\n ${emailController.text}\n ${passwordController.text}')
                           );
                       });
-                      
+                        }
                       },
                       )
                       ),
               ],
-            )));
+            )
+            
+            )
+    )
+    );
   }
 }

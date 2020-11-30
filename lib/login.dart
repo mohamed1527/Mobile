@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
-import 'forget_form.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -18,29 +17,25 @@ class _State extends State<Login> {
   TextEditingController passwordController = TextEditingController();
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
-    nameController.addListener(() {
-      print("Name Text Field:${nameController.text}");
-    });
-    passwordController.addListener(() {
-      print("Name Text Field:${passwordController.text}");
-    });
+    nameController.addListener(() {print("Name Text Field:${nameController.text}");});
+    passwordController.addListener(() {print("Name Text Field:${passwordController.text}");});
   }
 
+
   @override
-  void dispose() {
+  void dispose(){
     nameController.dispose();
     passwordController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Login'),
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Padding(
             padding: EdgeInsets.all(10),
@@ -52,7 +47,7 @@ class _State extends State<Login> {
                     child: Text(
                       'Miu Lost and Found',
                       style: TextStyle(
-                          color: Colors.red,
+                          color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.w500,
                           fontSize: 30),
                     )),
@@ -89,8 +84,9 @@ class _State extends State<Login> {
                   onPressed: () {
                     //forgot password screen
                   },
-                  textColor: Colors.red,
-                  child: Text('Forgot Password'),
+                  textColor: Theme.of(context).primaryColor,
+                  child: Text('Forgot Password',
+                  style: TextStyle(fontSize: 20)),
                 ),
                 Container(
                     height: 50,
@@ -100,29 +96,31 @@ class _State extends State<Login> {
                       color: Colors.black,
                       child: Text('Login'),
                       onPressed: () {
-                        return showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                  content: Text(
-                                      ' ${nameController.text}\n ${passwordController.text}'));
-                            });
+                        return showDialog(context: context,
+                        builder:(context){
+                          return AlertDialog(
+                            content:Text(' ${nameController.text}\n ${passwordController.text}')
+                          );
+                        });
+                     
                       },
                     )),
                 Container(
                     child: Row(
                   children: <Widget>[
-                    Text('Does not have account?'),
+                    Text('Does not have account?',style: TextStyle(fontSize: 20)),
                     FlatButton(
-                      textColor: Colors.blue,
+                      textColor: Theme.of(context).primaryColor,
                       child: Text(
                         'Sign up',
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
                         //signup page
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Signup()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Signup()));
+                        
                       },
                     )
                   ],

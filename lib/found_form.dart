@@ -57,6 +57,7 @@ class FoundFormState extends State<FoundForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
