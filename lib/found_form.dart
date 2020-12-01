@@ -97,6 +97,12 @@ class FoundFormState extends State<FoundForm> {
             ),
             TextFormField(
               decoration: const InputDecoration(
+                hintText: 'Descreption ',
+                labelText: 'Descreption ',
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
                 icon: const Icon(Icons.calendar_today),
                 hintText: 'Found Date',
                 labelText: 'Found Date',

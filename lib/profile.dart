@@ -17,7 +17,10 @@ import 'package:flutter/material.dart';
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(title: Text('Profile'),),
+        appBar: AppBar(
+          leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){Navigator.pop(context);},),
+          backgroundColor: Theme.of(context).primaryColor,
+          title: Text('Profile'),),
         body: Stack(
           alignment: Alignment.center,
           children: <Widget>[

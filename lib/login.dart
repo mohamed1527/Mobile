@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
-
+import 'forget_form.dart';
 void main() {
   runApp(MaterialApp(
     home: Login(),
@@ -82,6 +82,11 @@ class _State extends State<Login> {
                 ),
                 FlatButton(
                   onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ForgetPass()));
+                        
                     //forgot password screen
                   },
                   textColor: Theme.of(context).primaryColor,

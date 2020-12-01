@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:study/aboutus.dart';
 import 'signup.dart';
 import 'login.dart';
+import 'found_form.dart';
+import 'lost_form.dart';
+import 'aboutus.dart';
 
 void main() => runApp(new App());
 
@@ -47,16 +51,27 @@ class MyApp extends State<App> {
         ),
         Row(
   mainAxisAlignment: MainAxisAlignment.spaceAround,
-  children: const <Widget>[
-    Icon(
-      Icons.thumb_up,
+  children:  <Widget>[
+    IconButton(
+      icon: Icon(Icons.thumb_up ,),
+     
       color: Colors.green,
-      size: 150.0,   
-    ),
-    Icon(
-      Icons.thumb_down,
+      onPressed: () { Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FoundForm()),
+                      );
+      }),
+    IconButton(
+      icon:Icon(Icons.thumb_down),
+      
       color: Colors.red,
-      size: 150.0,
+      onPressed: () { Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LostForm()),
+                      );
+      }
     ),
   ]
         ),
@@ -179,7 +194,10 @@ Row(
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                    },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutUs()));
+                      },
                   ),
             ],
           )

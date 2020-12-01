@@ -146,7 +146,7 @@ class _State extends State<Signup> {
                     ),
                     validator: (value){
                       if(value.isEmpty){
-                        return 'Please enter UserName';
+                        return 'Please enter Password';
                       }
                       if(value != passwordController.text){
                         return 'Password are not matching';
