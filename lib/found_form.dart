@@ -9,19 +9,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appTitle = 'Found Item Form ';
     return MaterialApp(
-      title: appTitle,
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        resizeToAvoidBottomPadding: false,
+        title: appTitle,
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          resizeToAvoidBottomPadding: false,
 
-        /// error kan mawgod
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(appTitle),
-        ),
-        body: FoundForm(),
-      ),
-    );
+          /// error kan mawgod
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            backgroundColor: Colors.black,
+            title: Text(appTitle),
+          ),
+          body: SingleChildScrollView(
+            child: FoundForm(),
+          ),
+        ));
   }
 }
 
@@ -96,7 +103,10 @@ class FoundFormState extends State<FoundForm> {
               },
             ),
             TextFormField(
+              minLines: 2,
+              maxLines: 5,
               decoration: const InputDecoration(
+                icon: const Icon(Icons.phone),
                 hintText: 'Descreption ',
                 labelText: 'Descreption ',
               ),
@@ -126,25 +136,25 @@ class FoundFormState extends State<FoundForm> {
                 dateCtl.text = date.toIso8601String();
               },
             ),
-            FlatButton(
-              color: Colors.grey,
-              child: Text(
-                "Open Camera",
-                style: TextStyle(color: Colors.black),
+            Container(
+              child: RaisedButton(
+                onPressed: () {
+                  open_gallery();
+                },
+                color: Colors.red,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      'choose image',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Icon(
+                      Icons.insert_photo,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
-              onPressed: () {
-                open_camera();
-              },
-            ),
-            FlatButton(
-              color: Colors.red,
-              child: Text(
-                "Open Gallery",
-                style: TextStyle(color: Colors.black),
-              ),
-              onPressed: () {
-                open_gallery();
-              },
             ),
             new Container(
                 padding: const EdgeInsets.all(10),
