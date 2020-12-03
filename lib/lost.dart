@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(LostItems());
 }
 
-class MyApp extends StatelessWidget {
+class LostItems extends StatelessWidget {
   final List<String> entries = <String>['A', 'B', 'C', 'D', 'F'];
   final List<String> names = <String>[
     'Mohamed',

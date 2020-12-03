@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-void main() => runApp(MyApp());
+void main() => runApp(Found());
 
-class MyApp extends StatelessWidget {
+class Found extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Found Item Form ';

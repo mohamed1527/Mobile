@@ -1,63 +1,49 @@
 import 'package:flutter/material.dart';
 
-  void main() => runApp(new MyApp());
+  void main() => runApp(new Profile());
 
-  class MyApp extends StatelessWidget {
+  class Profile extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
       return new MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Stack Demo',
-        home: new StackDemo(),
-      );
+        home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.red[900],
+          leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){Navigator.pop(context);},),
+          
+          title: Text('Profile')),
+          body:new StackDemo(),
+      ));
     }
   }
 
   class StackDemo extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){Navigator.pop(context);},),
-          backgroundColor: Theme.of(context).primaryColor,
-          title: Text('Profile'),),
-        body: Stack(
+      return  Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            // background image and bottom contents
             Column(
               children: <Widget>[
-                Container(
-                  height: 200.0,color: Colors.orange,
-                  child: Center(
-                    child: Image.asset(
-                'images/photo2.jpg',
-                width: 440.4,
-               // height: 200,
-                fit: BoxFit.cover,
-        ),
-                    
-                  ),
-                ),
+                Padding(padding: EdgeInsets.only(top:300)),
                 Expanded(
                   child: Container(
-                    
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children:[ 
-                       
                         Text('01003456789',
                         style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.orange[300],
+                        color: Colors.black,
                         ),
                     ),
                     Text('Malak Ahmed',
                         style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue[300],
+                        color: Colors.black,
                         ),
                     ),
                     Text('Senior year faculty of Computer science',
@@ -73,13 +59,15 @@ import 'package:flutter/material.dart';
                 )
               ],
             ),
-            // Profile image
+            
             Positioned(
-              top: 150.0,
+              
+              top: 50.0,
                // (background container size) - (circle height / 2)
               child: Container(
-                height: 100.0,
-                width: 100.0,
+               
+                height: 200.0,
+                width: 200.0,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.green,
@@ -91,7 +79,6 @@ import 'package:flutter/material.dart';
               ),
             ) 
              ],
-        ),
       );
     }
   }

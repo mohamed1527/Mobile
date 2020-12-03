@@ -80,10 +80,7 @@ class TextDesc extends StatelessWidget {
       margin: EdgeInsets.all(10.0),
       width: 400,
       height: 300,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(),
-      ),
+     
       child: Text(
         'Misr International University is an undergraduate private university located in ElObour city in Qalyubiyya Governorate.' 
         'Established in 1996, in Maadi, The University changed its location to km 28 Cairo-Ismailia Road.' 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 
-void main() => runApp(MyApp());
+void main() => runApp(Lost());
 
-class MyApp extends StatelessWidget {
+class Lost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Lost Item Form ';
