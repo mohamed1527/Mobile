@@ -11,6 +11,6 @@ class SignupScreen extends StatelessWidget {
           title: Text('Sign up'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        body: SignUp());
+        body: SignUpPage());
   }
 }

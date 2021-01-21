@@ -1,9 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatelessWidget {
+/*class SignUp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SignUp(),
+      ),
+    );
+  }
+}*/
+
+class SignUpPage extends StatefulWidget {
+  @override
+  SignUpState createState() => SignUpState();
+}
+
+class SignUpState extends State<SignUpPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  final _emailController = TextEditingController();
+  final _passwordControlller = TextEditingController();
+
   Widget build(BuildContext context) {
     return Form(
+        key: _formKey,
         child: Padding(
             padding: EdgeInsets.all(10),
             child: ListView(
@@ -78,6 +100,7 @@ class SignUp extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextFormField(
                     obscureText: true,
+                    controller: _passwordControlller,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
@@ -93,12 +116,17 @@ class SignUp extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Retype Password',
-                    ),
-                  ),
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Retype Password',
+                      ),
+                      validator: (value) {
+                        if (value != _passwordControlller) {
+                          return "Password doesnt match ";
+                        }
+                        return null;
+                      }),
                 ),
                 Container(
                     height: 50,
@@ -107,7 +135,13 @@ class SignUp extends StatelessWidget {
                         textColor: Colors.white,
                         color: Theme.of(context).primaryColor,
                         child: Text('Sign up'),
-                        onPressed: () {})),
+                        onPressed: () {
+                          if (!_formKey.currentState.validate()) {
+                            //invalid
+                            return;
+                          }
+                          _formKey.currentState.save();
+                        })),
               ],
             )));
   }
