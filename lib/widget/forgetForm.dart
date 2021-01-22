@@ -14,7 +14,7 @@ class forgetForm extends StatelessWidget {
                 child: Flexible(
                   child: Text(
                     'Forget your password',
-                    textScaleFactor: 2.8,
+                    textScaleFactor: 2.2,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

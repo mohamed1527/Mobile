@@ -1,18 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/*class SignUp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SignUp(),
-      ),
-    );
-  }
-}*/
-
 class SignUpPage extends StatefulWidget {
   @override
   SignUpState createState() => SignUpState();
@@ -72,8 +60,8 @@ class SignUpState extends State<SignUpPage> {
                       labelText: 'User Name',
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please enter UserName';
+                      if (value.isEmpty || value.length < 5) {
+                        return 'Please enter valid UserName';
                       }
                       return null;
                     },
@@ -106,8 +94,8 @@ class SignUpState extends State<SignUpPage> {
                       labelText: 'Password',
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please enter Password';
+                      if (value.isEmpty || value.length < 6) {
+                        return 'Please enter valid Password';
                       }
                       return null;
                     },

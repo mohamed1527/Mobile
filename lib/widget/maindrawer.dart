@@ -1,10 +1,10 @@
-import 'package:MOBILE/screens/about_us_screen.dart';
-import 'package:MOBILE/screens/tabs_screen.dart';
+import '../screens/about_us_screen.dart';
+import '../screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/signup_screen.dart';
 import '../screens/login_screen.dart';
 import '../screens/MyProfile_screen.dart';
-import 'package:MOBILE/main.dart';
+import '../main.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class MainDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Login(),
+                    builder: (context) => LoginScreen(),
                   ));
             },
           ),
