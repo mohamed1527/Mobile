@@ -12,10 +12,12 @@ class forgetForm extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: Flexible(
-                  child: Text(
-                    'Forget your password',
-                    textScaleFactor: 2.2,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  child: Center(
+                    child: Text(
+                      'Forget your password',
+                      textScaleFactor: 2.2,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/signup_screen.dart';
 import '../screens/forget_form_screen.dart';
+import 'package:toast/toast.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -96,22 +97,22 @@ class _State extends State<Login> {
               child: Text('Forgot Password', style: TextStyle(fontSize: 20)),
             ),
             Container(
-                height: 50,
-                padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: RaisedButton(
+              height: 50,
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: RaisedButton(
                   textColor: Colors.white,
                   color: Theme.of(context).primaryColor,
                   child: Text('Login'),
                   onPressed: () {
-                    return showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                              content: Text(
-                                  ' ${nameController.text}\n ${passwordController.text}'));
-                        });
-                  },
-                )),
+                    if (nameController.text.isEmpty ||
+                        passwordController.text.isEmpty) {
+                      Toast.show("Please enter user and password ", context,
+                          duration: Toast.LENGTH_LONG);
+                    } else {
+                      return null;
+                    }
+                  }),
+            ),
             Container(
                 child: Row(
               children: <Widget>[

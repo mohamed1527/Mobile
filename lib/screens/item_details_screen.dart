@@ -16,7 +16,6 @@ class ItemDetailScreen extends StatelessWidget {
               height: 300,
               child: Image.asset(
                 "images/flash.png",
-                //   selectedMeal.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -35,7 +34,14 @@ class ItemDetailScreen extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 height: 150,
                 width: 300,
-                child: Text("Descrption: ")),
+                child: Text(
+                  "Descrption: ",
+                  style: TextStyle(fontSize: 14),
+                  softWrap: true,
+                  overflow: TextOverflow.fade,
+                  textAlign: TextAlign.justify,
+                  maxLines: 3,
+                )),
             Text(
               "Found Date: 22/12/2020",
               textScaleFactor: 1.4,
