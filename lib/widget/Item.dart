@@ -6,10 +6,7 @@ class Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ItemDetailScreen()),
-          );
+          Navigator.pushNamed(context, '/itemdetails');
         },
         child: Card(
           shape: RoundedRectangleBorder(

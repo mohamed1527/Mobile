@@ -1,99 +1,51 @@
-import 'screens/LostForm_screen.dart';
-import 'screens/FoundForm_screen.dart';
+import 'package:MOBILE/screens/FoundForm_screen.dart';
+import 'package:MOBILE/screens/LostForm_screen.dart';
+import 'package:MOBILE/screens/MyProfile_screen.dart';
+import 'package:MOBILE/screens/about_us_screen.dart';
+import 'package:MOBILE/screens/forget_form_screen.dart';
+import 'package:MOBILE/screens/founditem_screen.dart';
+import 'package:MOBILE/screens/home.dart';
+import 'package:MOBILE/screens/item_details_screen.dart';
+import 'package:MOBILE/screens/itemsdata_screen.dart';
+import 'package:MOBILE/screens/login_screen.dart';
+import 'package:MOBILE/screens/lost_item_screen.dart';
+import 'package:MOBILE/screens/signup_screen.dart';
+import 'package:MOBILE/screens/tabs_screen.dart';
+import 'package:MOBILE/screens/wrapper.dart';
+import 'package:MOBILE/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'widget/maindrawer.dart';
+import 'package:provider/provider.dart';
+import 'models/user.dart';
 
-void main() => runApp(MyApp());
-
-GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
         theme: ThemeData(primaryColor: Colors.red[900]),
-        home: Scaffold(
-            key: _drawerKey,
-            appBar: AppBar(
-              leading: IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {
-                    _drawerKey.currentState.openDrawer();
-                  }),
-              title: Text('MIU Lost And Found'),
-            ),
-            body: Column(
-              children: [
-                Padding(padding: EdgeInsets.all(8)),
-                Image.asset(
-                  'images/MIU.jpg',
-                  width: 350.4,
-                  height: 200,
-                  fit: BoxFit.fill,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.thumb_up,
-                              size: 70,
-                            ),
-                            color: Colors.red[900],
-                            onPressed: () {
-                              Navigator.pop(context);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FoundFormScreen()),
-                              );
-                            }),
-                        flex: 1,
-                      ),
-                      Expanded(
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.thumb_down,
-                              color: Colors.black,
-                              size: 70,
-                            ),
-                            color: Colors.red,
-                            onPressed: () {
-                              Navigator.pop(context);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LostFormScreen()),
-                              );
-                            }),
-                        flex: 1,
-                      )
-                    ]),
-                SizedBox(
-                  height: 40,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const <Widget>[
-                    Text(
-                      'I Found Something',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
-                    ),
-                    Text(
-                      'I Lost Something',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            drawer: MainDrawer()));
+        routes: {
+          '/signup': (context) => SignupScreen(),
+          '/login': (context) => LoginScreen(),
+          '/aboutus': (context) => AboutUsScreen(),
+          '/profile': (context) => ProfileScreen(),
+          '/lostitem': (context) => LostItemScreen(),
+          '/lostform': (context) => LostFormScreen(),
+          '/founditem': (context) => FoundItemScreen(),
+          '/foundform': (context) => FoundFormScreen(),
+          '/itemdetails': (context) => ItemDetailScreen(),
+          '/forget': (context) => ForgetPassScreen(),
+          '/itemdata': (context) => ItemsData(),
+          '/tabs': (context) => TabsScreen(),
+          '/home': (context) => Home(),
+        },
+        home: Wrapper(),
+      ),
+    );
   }
 }

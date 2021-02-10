@@ -29,15 +29,7 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyApp()),
-              );
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyApp(),
-                  ));
+              Navigator.pushNamed(context, '/home');
             },
           ),
           ListTile(
@@ -48,11 +40,7 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
-                  ));
+              Navigator.pushNamed(context, '/login');
             },
           ),
           ListTile(
@@ -63,11 +51,7 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignupScreen(),
-                  ));
+              Navigator.pushNamed(context, '/signup');
             },
           ),
           ListTile(
@@ -78,10 +62,7 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TabsScreen()),
-              );
+              Navigator.pushNamed(context, '/tabs');
             },
           ),
           ListTile(
@@ -92,10 +73,7 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfileScreen()),
-              );
+              Navigator.pushNamed(context, '/profile');
             },
           ),
           ListTile(
@@ -106,8 +84,7 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AboutUsScreen()));
+              Navigator.pushNamed(context, '/aboutus');
             },
           ),
         ],

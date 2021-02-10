@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "572896538528",
+    "project_id": "miu-lost-and-found",
+    "storage_bucket": "miu-lost-and-found.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572896538528:android:ebfc5b1e66db9c21e97ec5",
+        "android_client_info": {
+          "package_name": "com.example.test1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572896538528-d6dq42c6227o5dt9seed5bdstj7t5m8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeWG6uBd-uHXXmRS_yC0OLTeluYghJ57g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572896538528-d6dq42c6227o5dt9seed5bdstj7t5m8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

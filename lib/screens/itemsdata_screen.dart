@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/item.dart';
 
 class ItemsData extends StatelessWidget {
   //final List<Item> _allitems = allitems();
