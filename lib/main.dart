@@ -2,6 +2,7 @@ import 'package:MOBILE/screens/FoundForm_screen.dart';
 import 'package:MOBILE/screens/LostForm_screen.dart';
 import 'package:MOBILE/screens/MyProfile_screen.dart';
 import 'package:MOBILE/screens/about_us_screen.dart';
+import 'package:MOBILE/screens/chat_screen.dart';
 import 'package:MOBILE/screens/forget_form_screen.dart';
 import 'package:MOBILE/screens/founditem_screen.dart';
 import 'package:MOBILE/screens/home.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           '/itemdata': (context) => ItemsData(),
           '/tabs': (context) => TabsScreen(),
           '/home': (context) => Home(),
+          '/chat': (context) => ChatScreen(),
         },
         home: Wrapper(),
       ),

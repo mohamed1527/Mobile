@@ -66,6 +66,17 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(Icons.image),
+            title: Text(
+              'Chat',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/chat');
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.category),
             title: Text(
               'Profile',

@@ -43,7 +43,6 @@ class _State extends State<Login> {
     return loading
         ? Loading()
         : Padding(
-            key: _formKey,
             padding: EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
@@ -66,24 +65,26 @@ class _State extends State<Login> {
                       height: 80,
                     )),
                 Container(
-                  padding: EdgeInsets.all(10),
-                  child: TextFormField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'User Name',
-                    ),
-                    validator: (value) {
-                      if (value.isEmpty || value.length < 6) {
-                        return 'Please enter valid UserName';
-                      }
-                      return null;
-                    },
-                    onChanged: (val) {
-                      setState(() => email = val);
-                    },
-                  ),
-                ),
+                    padding: EdgeInsets.all(10),
+                    child: Form(
+                      key: _formKey,
+                      child: TextFormField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Email',
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty || value.length < 6) {
+                            return 'Please enter valid Email';
+                          }
+                          return null;
+                        },
+                        onChanged: (val) {
+                          setState(() => email = val);
+                        },
+                      ),
+                    )),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextFormField(
@@ -121,20 +122,18 @@ class _State extends State<Login> {
                       color: Theme.of(context).primaryColor,
                       child: Text('Login'),
                       onPressed: () async {
-                        if (nameController.text.isEmpty ||
-                            passwordController.text.isEmpty) {
-                          Toast.show("Please enter user and password ", context,
-                              duration: Toast.LENGTH_LONG);
-                        }
                         if (_formKey.currentState.validate()) {
-                          setState(() => loading = true);
+                          print('Email: ${email}');
+                          print('Password: ${password}');
                           dynamic result = await _auth
                               .signInWithEmailAndPassword(email, password);
+                          print('Result: ${result}');
                           if (result == null) {
                             setState(() {
-                              error = 'Can"t Sign In with this email';
-                              loading = false;
+                              error = 'Enter a valid Email and Password';
                             });
+                          } else {
+                            Navigator.pushNamed(context, '/home');
                           }
                         }
                       }),
@@ -162,3 +161,167 @@ class _State extends State<Login> {
             ));
   }
 }
+// import 'package:MOBILE/screens/home.dart';
+// import 'package:MOBILE/services/auth.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter/material.dart';
+
+// class LogIn extends StatefulWidget {
+//   @override
+//   _LogInState createState() => _LogInState();
+// }
+
+// class _LogInState extends State<LogIn> {
+//   TextEditingController nameController = TextEditingController();
+//   TextEditingController passwordController = TextEditingController();
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     nameController.addListener(() {
+//       print("Name Text Field:${nameController.text}");
+//     });
+//     passwordController.addListener(() {
+//       print("Name Text Field:${passwordController.text}");
+//     });
+//   }
+
+//   @override
+//   void dispose() {
+//     nameController.dispose();
+//     passwordController.dispose();
+//     super.dispose();
+//   }
+
+//   final AuthService _auth = AuthService();
+//   final _formKey = GlobalKey<FormState>();
+
+//   String error = '';
+//   // Text Field state
+//   String email = '';
+//   String password = '';
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       key: _formKey,
+//       padding: EdgeInsets.all(10),
+//       child: ListView(
+//         children: <Widget>[
+//           Container(
+//               alignment: Alignment.center,
+//               padding: EdgeInsets.all(10),
+//               child: Text(
+//                 'Miu Lost and Found',
+//                 style: TextStyle(
+//                     color: Theme.of(context).primaryColor,
+//                     fontWeight: FontWeight.w500,
+//                     fontSize: 30),
+//               )),
+//           Container(
+//               alignment: Alignment.center,
+//               padding: EdgeInsets.all(10),
+//               child: Image.asset(
+//                 'images/MIU.jpg',
+//                 width: 240.4,
+//                 height: 80,
+//               )),
+//           Container(
+//             padding: EdgeInsets.all(10),
+//             child: TextFormField(
+//               controller: nameController,
+//               decoration: InputDecoration(
+//                 border: OutlineInputBorder(),
+//                 labelText: 'Email',
+//               ),
+//               validator: (value) {
+//                 if (value.isEmpty) {
+//                   return 'Enter an email';
+//                 } else {
+//                   return null;
+//                 }
+//               },
+//               onChanged: (value) {
+//                 setState(() {
+//                   email = value;
+//                 });
+//               },
+//             ),
+//           ),
+//           Container(
+//             padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+//             child: TextFormField(
+//               //obscureText: true,
+//               controller: passwordController,
+//               decoration: InputDecoration(
+//                 border: OutlineInputBorder(),
+//                 labelText: 'Password',
+//               ),
+//               validator: (value) {
+//                 if (value.length < 6) {
+//                   return ('Enter a password 6+ chars long');
+//                 } else {
+//                   return null;
+//                 }
+//               },
+//               obscureText: true,
+//               onChanged: (value) {
+//                 setState(() {
+//                   password = value;
+//                 });
+//               },
+//             ),
+//           ),
+//           SizedBox(height: 20),
+//           RaisedButton(
+//             onPressed: () async {
+//               // usersRef
+//               //     .where('UserEmail', isEqualTo: email)
+//               //     .getDocuments()
+//               //     .then((QuerySnapshot snapshot) {
+//               //   snapshot.documents.forEach((DocumentSnapshot doc) {
+//               //     print("Here ${doc.data['UserType']}");
+//               //     foundType = doc.data['UserType'];
+//               //     print("Here ${foundType}");
+//               //   });
+//               // });
+
+//               if (_formKey.currentState.validate()) {
+//                 print('Email: ${email}');
+//                 print('Password: ${password}');
+//                 dynamic result =
+//                     await _auth.signInWithEmailAndPassword(email, password);
+//                 print('Result: ${result}');
+//                 if (result == null) {
+//                   setState(() {
+//                     error = 'Enter a valid Email and Password';
+//                   });
+//                 } else {
+//                   Navigator.push(
+//                       context, MaterialPageRoute(builder: (context) => Home()));
+//                 }
+//               }
+//             },
+//             color: Colors.redAccent,
+//             child: Text(
+//               'Sign in',
+//               style: TextStyle(),
+//             ),
+//           ),
+//           SizedBox(
+//             height: 12.0,
+//           ),
+//           Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0)),
+//           MaterialButton(
+//             onPressed: () {
+//               return null;
+//             },
+//             color: Colors.white,
+//             textColor: Colors.black,
+//             child: Text('Login with Google'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

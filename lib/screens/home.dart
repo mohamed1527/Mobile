@@ -1,5 +1,6 @@
 import 'package:MOBILE/screens/FoundForm_screen.dart';
 import 'package:MOBILE/screens/LostForm_screen.dart';
+import 'package:MOBILE/screens/welcome.dart';
 import 'package:MOBILE/services/auth.dart';
 import 'package:MOBILE/widget/maindrawer.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class Home extends StatelessWidget {
               label: Text('Logout'),
               onPressed: () async {
                 await _auth.signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Welcome()));
               },
             )
           ],
