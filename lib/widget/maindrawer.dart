@@ -25,7 +25,10 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text(
               'Home Page',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Pacifico'),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -36,7 +39,10 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.login),
             title: Text(
               'Login',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Pacifico'),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -47,7 +53,10 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.account_circle),
             title: Text(
               'Signup',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Pacifico'),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -58,7 +67,10 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.image),
             title: Text(
               'Items',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Pacifico'),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -69,7 +81,10 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.image),
             title: Text(
               'Chat',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Pacifico'),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -80,7 +95,10 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.category),
             title: Text(
               'Profile',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Pacifico'),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -91,7 +109,10 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.info),
             title: Text(
               'About Us',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Pacifico'),
             ),
             onTap: () {
               Navigator.pop(context);

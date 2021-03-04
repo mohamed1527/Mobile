@@ -1,9 +1,7 @@
-import 'package:MOBILE/provider/modelHud.dart';
+import 'package:MOBILE/widget/admin/addUser_Form.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../widget/signup_Form.dart';
 
-class SignupScreen extends StatelessWidget {
+class AddUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,6 +9,6 @@ class SignupScreen extends StatelessWidget {
           title: Text('Sign up'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        body: SignUpPage());
+        body: AddUserScreen());
   }
 }

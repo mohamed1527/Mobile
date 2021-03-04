@@ -1,7 +1,10 @@
+import 'package:MOBILE/provider/modelHud.dart';
 import 'package:MOBILE/services/auth.dart';
-import 'package:MOBILE/shared/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -20,15 +23,17 @@ class SignUpState extends State<SignUpPage> {
   final _passwordController = TextEditingController();
 
   Widget build(BuildContext context) {
-    return loading
-        ? Loading()
-        : Form(
+    return ModalProgressHUD(
+        inAsyncCall: Provider.of<ModelHud>(context).isLoading,
+        child: Form(
             key: _formKey,
             child: Padding(
                 padding: EdgeInsets.all(10),
                 child: ListView(
                   children: <Widget>[
                     Container(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
@@ -39,6 +44,8 @@ class SignUpState extends State<SignUpPage> {
                               fontSize: 30),
                         )),
                     Container(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Image.asset(
@@ -47,10 +54,13 @@ class SignUpState extends State<SignUpPage> {
                           height: 80,
                         )),
                     Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
                         autofocus: true,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.perm_identity),
                           border: OutlineInputBorder(),
                           labelText: 'Full Name',
                         ),
@@ -63,9 +73,12 @@ class SignUpState extends State<SignUpPage> {
                       ),
                     ),
                     Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.perm_identity_outlined),
                           border: OutlineInputBorder(),
                           labelText: 'User Name',
                         ),
@@ -78,9 +91,12 @@ class SignUpState extends State<SignUpPage> {
                       ),
                     ),
                     Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.email),
                           border: OutlineInputBorder(),
                           labelText: 'Email ',
                         ),
@@ -98,11 +114,14 @@ class SignUpState extends State<SignUpPage> {
                       ),
                     ),
                     Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextFormField(
                         obscureText: true,
                         controller: _passwordController,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.lock),
                           border: OutlineInputBorder(),
                           labelText: 'Password',
                         ),
@@ -118,42 +137,55 @@ class SignUpState extends State<SignUpPage> {
                       ),
                     ),
                     Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextFormField(
                         obscureText: true,
                         controller: _passwordController,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.lock),
                           border: OutlineInputBorder(),
                           labelText: 'Retype Password',
                         ),
                       ),
                     ),
                     Container(
-                      height: 50,
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: RaisedButton(
-                        textColor: Colors.white,
-                        color: Theme.of(context).primaryColor,
-                        child: Text('Sign up'),
-                        onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            print(email);
-                            print(password);
-                            setState(() => loading = true);
-                            dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password);
-                            if (result == null) {
-                              setState(() {
-                                error = 'please enter valid email';
-                                loading = false;
-                              });
-                            }
-                            Navigator.pushNamed(context, '/login');
-                          }
-                        },
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 7.5),
+                      child: Builder(
+                        builder: (context) => FlatButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            textColor: Colors.white,
+                            color: Theme.of(context).primaryColor,
+                            child: Text('Sign up'),
+                            onPressed: () async {
+                              final modelhud =
+                                  Provider.of<ModelHud>(context, listen: false);
+                              modelhud.changeIsLoading(true);
+                              if (_formKey.currentState.validate()) {
+                                try {
+                                  _formKey.currentState.save();
+                                  dynamic result =
+                                      await _auth.registerWithEmailAndPassword(
+                                          email, password);
+                                  modelhud.changeIsLoading(false);
+                                  Navigator.pushNamed(context, '/home');
+                                } on PlatformException catch (e) {
+                                  modelhud.changeIsLoading(false);
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                    content: Text(e.message),
+                                  ));
+                                }
+                              }
+                              modelhud.changeIsLoading(false);
+                            }),
                       ),
                     )
                   ],
-                )));
+                ))));
   }
 }
