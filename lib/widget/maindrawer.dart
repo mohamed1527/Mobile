@@ -36,34 +36,6 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.login),
-            title: Text(
-              'Login',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  fontFamily: 'Pacifico'),
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/login');
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text(
-              'Signup',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  fontFamily: 'Pacifico'),
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/signup');
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.image),
             title: Text(
               'Items',

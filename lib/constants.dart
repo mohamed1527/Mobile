@@ -6,3 +6,4 @@ const kEmail = 'email';
 const kPassword = 'Password';
 const kcreatedAt = 'createdAt';
 const kUserCollication = 'users';
+const kLostItemCollication = 'LostItem';

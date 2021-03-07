@@ -56,7 +56,9 @@ class AdminPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30)),
                     textColor: Colors.white,
                     color: Theme.of(context).primaryColor,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/edituser');
+                    },
                     child: Text('Edit User'),
                   ),
                   FlatButton(

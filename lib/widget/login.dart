@@ -178,10 +178,11 @@ class _State extends State<Login> {
                                     dynamic result =
                                         await _auth.signInWithEmailAndPassword(
                                             email, password);
-                                    print(result);
-                                    modelhud.changeIsLoading(false);
                                     Navigator.pushNamed(context, '/home');
-                                  } on PlatformException catch (e) {
+
+                                    //   print(result);
+                                    modelhud.changeIsLoading(false);
+                                  } catch (e) {
                                     modelhud.changeIsLoading(false);
                                     Scaffold.of(context).showSnackBar(SnackBar(
                                       content: Text(e.message),

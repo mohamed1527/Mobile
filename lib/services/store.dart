@@ -1,4 +1,5 @@
 import 'package:MOBILE/constants.dart';
+import 'package:MOBILE/models/LostItem.dart';
 import 'package:MOBILE/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -13,5 +14,18 @@ class Store {
       kFullname: user.fullname,
       kcreatedAt: user.createdAt,
     });
+  }
+
+  addLostItem(LostItem lostItem) {
+    _firestore.collection(kLostItemCollication).add({
+      'image': lostItem.image,
+      'lostdate': lostItem.lostDate,
+      'name': lostItem.name,
+      'descreption': lostItem.descreption
+    });
+  }
+
+  Stream<QuerySnapshot> loadUsers() {
+    return _firestore.collection(kUserCollication).snapshots();
   }
 }

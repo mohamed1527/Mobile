@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widget/item_form.dart';
+import '../widget/lostItem_form.dart';
 
 class LostFormScreen extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class LostFormScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         title: Text("Lost Form"),
       ),
-      body: ItemForm(),
+      body: LostItemForm(),
     );
   }
 }

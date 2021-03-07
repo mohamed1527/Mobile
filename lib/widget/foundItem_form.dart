@@ -2,24 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class ItemForm extends StatefulWidget {
+class FoundItemForm extends StatefulWidget {
   @override
   FoundFormState createState() => FoundFormState();
 }
 
-class FoundFormState extends State<ItemForm> {
+class FoundFormState extends State<FoundItemForm> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController dateCtl = TextEditingController();
   File _image;
   void initState() {
     super.initState();
-  }
-
-  void open_camera() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = image;
-    });
   }
 
   void open_gallery() async {

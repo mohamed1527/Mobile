@@ -60,6 +60,7 @@ class MyApp extends StatelessWidget {
               '/chat': (context) => ChatScreen(),
               '/adminHomePage': (context) => AdminHome(),
               '/adduser': (context) => AddUser(),
+              //    '/edituser': (context) => EditUser(),
             },
             home: Wrapper(),
           ),
