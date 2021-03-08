@@ -24,6 +24,8 @@ class _ChatScreenState extends State<ChatScreen> {
   final myController = TextEditingController();
   final ScrollController scrollController = new ScrollController();
   final _store = Store();
+  final sender_id = "1";
+  final receiver_id = "2";
 
   @override
   void dispose() {
@@ -56,10 +58,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   controller: scrollController,
                   itemCount: messages.length,
                   itemBuilder: (BuildContext context, int index) {
-                    if (index % 2 == 0) {
-                      return leftMessage(context, messages[index].message);
-                    } else {
+                    if (sender_id == messages[index].sender_id) {
                       return rightMessage(context, messages[index].message);
+                    } else {
+                      return leftMessage(context, messages[index].message);
                     }
                   }),
             ),
@@ -118,7 +120,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (myController.text.isNotEmpty) {
       // messages.add(myController.text);
       // CartDetail(productId: 1, quantity: 2)
-      Message message = Message(myController.text, "2", "3");
+      Message message = Message(myController.text, sender_id, receiver_id);
       messages.add(message);
 
       scrollController.animateTo(
