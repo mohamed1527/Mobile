@@ -6,7 +6,7 @@ class AddUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Sign up'),
+          title: Text('Add User'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
         body: AddUserScreen());

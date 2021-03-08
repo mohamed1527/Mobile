@@ -17,6 +17,9 @@ import 'package:MOBILE/screens/signup_screen.dart';
 import 'package:MOBILE/screens/tabs_screen.dart';
 import 'package:MOBILE/screens/wrapper.dart';
 import 'package:MOBILE/services/auth.dart';
+import 'package:MOBILE/widget/admin/editUser_Form.dart';
+import 'package:MOBILE/widget/admin/manageUsers.dart';
+import 'package:MOBILE/widget/admin/showUsers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/user.dart';
@@ -60,7 +63,9 @@ class MyApp extends StatelessWidget {
               '/chat': (context) => ChatScreen(),
               '/adminHomePage': (context) => AdminHome(),
               '/adduser': (context) => AddUser(),
-              //    '/edituser': (context) => EditUser(),
+              '/edituser': (context) => EditUser(),
+              '/manageuser': (context) => ManageUsers(),
+              '/showuser': (context) => ShowUser(),
             },
             home: Wrapper(),
           ),

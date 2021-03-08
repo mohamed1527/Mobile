@@ -66,8 +66,20 @@ class AdminPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30)),
                     textColor: Colors.white,
                     color: Theme.of(context).primaryColor,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/manageuser');
+                    },
                     child: Text('Delete User'),
+                  ),
+                  FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    textColor: Colors.white,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/showuser');
+                    },
+                    child: Text('Show Users'),
                   )
                 ],
               ),
