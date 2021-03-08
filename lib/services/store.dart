@@ -21,7 +21,8 @@ class Store {
       'image': lostItem.image,
       'lostdate': lostItem.lostDate,
       'name': lostItem.name,
-      'descreption': lostItem.descreption
+      'descreption': lostItem.descreption,
+      'phone': lostItem.phone,
     });
   }
 
@@ -29,12 +30,21 @@ class Store {
     return _firestore.collection(kUserCollication).snapshots();
   }
 
-  addFoundtem(LostItem FoundItem) {
+  Stream<QuerySnapshot> loadLostItems() {
+    return _firestore.collection(kLostItemCollication).snapshots();
+  }
+
+  Stream<QuerySnapshot> loadFoundItems() {
+    return _firestore.collection(kFoundItemCollication).snapshots();
+  }
+
+  addFoundtem(LostItem foundItem) {
     _firestore.collection(kFoundItemCollication).add({
-      'image': FoundItem.image,
-      'lostdate': FoundItem.lostDate,
-      'name': FoundItem.name,
-      'descreption': FoundItem.descreption
+      'image': foundItem.image,
+      'lostdate': foundItem.lostDate,
+      'name': foundItem.name,
+      'descreption': foundItem.descreption,
+      'phone': foundItem.phone,
     });
   }
 

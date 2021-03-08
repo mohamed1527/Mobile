@@ -7,12 +7,13 @@ import 'package:MOBILE/screens/admin/addUser.dart';
 import 'package:MOBILE/screens/admin/adminHome.dart';
 import 'package:MOBILE/screens/chat_screen.dart';
 import 'package:MOBILE/screens/forget_form_screen.dart';
+import 'package:MOBILE/screens/foundItem_details_screen.dart';
 import 'package:MOBILE/screens/founditem_screen.dart';
 import 'package:MOBILE/screens/home.dart';
-import 'package:MOBILE/screens/item_details_screen.dart';
 import 'package:MOBILE/screens/itemsdata_screen.dart';
 import 'package:MOBILE/screens/login_screen.dart';
 import 'package:MOBILE/screens/lost_item_screen.dart';
+import 'package:MOBILE/screens/lostitem_details_screen.dart';
 import 'package:MOBILE/screens/signup_screen.dart';
 import 'package:MOBILE/screens/tabs_screen.dart';
 import 'package:MOBILE/screens/wrapper.dart';
@@ -55,7 +56,8 @@ class MyApp extends StatelessWidget {
               '/lostform': (context) => LostFormScreen(),
               '/founditem': (context) => FoundItemScreen(),
               '/foundform': (context) => FoundFormScreen(),
-              '/itemdetails': (context) => ItemDetailScreen(),
+              '/itemdetails': (context) => LostItemDetailScreen(),
+              '/founditemdetails': (context) => FoundItemDetailScreen(),
               '/forget': (context) => ForgetPassScreen(),
               '/itemdata': (context) => ItemsData(),
               '/tabs': (context) => TabsScreen(),

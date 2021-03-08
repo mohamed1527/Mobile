@@ -1,24 +1,30 @@
+import 'package:MOBILE/provider/modelHud.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
 
 class ItemsData extends StatelessWidget {
   //final List<Item> _allitems = allitems();
 
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            appBar: new AppBar(
-              backgroundColor: Theme.of(context).primaryColor,
-              title: new Text(
-                "List of Items",
-                style: new TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
+    return ModalProgressHUD(
+      inAsyncCall: Provider.of<ModelHud>(context).isLoading,
+      child: MaterialApp(
+          home: Scaffold(
+              appBar: new AppBar(
+                backgroundColor: Theme.of(context).primaryColor,
+                title: new Text(
+                  "List of Items",
+                  style: new TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            body: new Padding(
-                padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                child: getHomePageBody(context))));
+              body: new Padding(
+                  padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                  child: getHomePageBody(context)))),
+    );
   }
 
   getHomePageBody(BuildContext context) {

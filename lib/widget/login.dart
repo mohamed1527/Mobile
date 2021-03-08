@@ -1,6 +1,7 @@
 import 'package:MOBILE/provider/adminMode.dart';
 import 'package:MOBILE/provider/modelHud.dart';
 import 'package:MOBILE/services/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../screens/signup_screen.dart';
@@ -178,13 +179,9 @@ class _State extends State<Login> {
                                     dynamic result =
                                         await _auth.signInWithEmailAndPassword(
                                             email, password);
-                                    // print(result);
                                     if (result != null) {
                                       Navigator.pushNamed(context, '/home');
                                     }
-
-                                    //   print(result);
-                                    modelhud.changeIsLoading(false);
                                   } catch (e) {
                                     modelhud.changeIsLoading(false);
                                     Scaffold.of(context).showSnackBar(SnackBar(

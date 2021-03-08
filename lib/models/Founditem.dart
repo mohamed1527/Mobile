@@ -1,4 +1,4 @@
-class LostItem {
+class FoundItem {
   final String name;
   final String id;
   final String image;
@@ -8,7 +8,7 @@ class LostItem {
   final String lostDate;
   final String phone;
 
-  LostItem(
+  FoundItem(
       {this.name,
       this.id,
       this.image,
