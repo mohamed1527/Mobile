@@ -8,3 +8,4 @@ const kcreatedAt = 'createdAt';
 const kUserCollication = 'users';
 const kLostItemCollication = 'LostItem';
 const kFoundItemCollication = 'FoundItem';
+const KMessagesCollication = 'Messages';

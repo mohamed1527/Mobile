@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:MOBILE/models/message.dart';
+import 'package:MOBILE/services/store.dart';
+import 'package:MOBILE/models/LostItem.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -21,6 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
   // ];
   final myController = TextEditingController();
   final ScrollController scrollController = new ScrollController();
+  final _store = Store();
 
   @override
   void dispose() {
@@ -115,13 +118,15 @@ class _ChatScreenState extends State<ChatScreen> {
     if (myController.text.isNotEmpty) {
       // messages.add(myController.text);
       // CartDetail(productId: 1, quantity: 2)
-      messages.add(Message(myController.text, "2", "3"));
+      Message message = Message(myController.text, "2", "3");
+      messages.add(message);
 
       scrollController.animateTo(
           scrollController.position.maxScrollExtent + 100,
           duration: const Duration(milliseconds: 50),
           curve: Curves.easeOut);
       myController.clear();
+      _store.addMessage(message);
     }
   }
 
