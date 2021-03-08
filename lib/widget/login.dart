@@ -178,7 +178,10 @@ class _State extends State<Login> {
                                     dynamic result =
                                         await _auth.signInWithEmailAndPassword(
                                             email, password);
-                                    Navigator.pushNamed(context, '/home');
+                                    // print(result);
+                                    if (result != null) {
+                                      Navigator.pushNamed(context, '/home');
+                                    }
 
                                     //   print(result);
                                     modelhud.changeIsLoading(false);
