@@ -7,3 +7,4 @@ const kPassword = 'Password';
 const kcreatedAt = 'createdAt';
 const kUserCollication = 'users';
 const kLostItemCollication = 'LostItem';
+const kFoundItemCollication = 'FoundItem';

@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:MOBILE/models/LostItem.dart';
 import 'package:MOBILE/provider/modelHud.dart';
 import 'package:MOBILE/services/store.dart';
@@ -6,12 +9,26 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 
-class LostItemForm extends StatelessWidget {
+class LostItemForm extends StatefulWidget {
+  @override
+  LostItemFormState createState() => LostItemFormState();
+}
+
+class LostItemFormState extends State<LostItemForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController dateCtl = TextEditingController();
-
+  File image;
+  String imgUrl;
+  bool loading = false;
   final _store = Store();
-  String name, phone, descreption, image, lostdate;
+  String name, phone, descreption, lostdate;
+
+  Future getImage() async {
+    var img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      image = img;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +63,12 @@ class LostItemForm extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide(color: Colors.white)),
                 ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter name of item';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   name = value;
                 },
@@ -68,6 +91,15 @@ class LostItemForm extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide(color: Colors.white)),
                 ),
+                validator: (value) {
+                  String pattern = r'^(?:[+0][1-9])?[0-9]{10,12}$';
+                  RegExp regExp = new RegExp(pattern);
+
+                  if (value.isEmpty || !regExp.hasMatch(value)) {
+                    return 'Please enter valid  phone';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   phone = value;
                 },
@@ -90,6 +122,12 @@ class LostItemForm extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide(color: Colors.white)),
                 ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter descreption of item';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   descreption = value;
                 },
@@ -103,7 +141,6 @@ class LostItemForm extends StatelessWidget {
                 onTap: () async {
                   DateTime date = DateTime(1900);
                   FocusScope.of(context).requestFocus(new FocusNode());
-
                   date = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
@@ -111,34 +148,74 @@ class LostItemForm extends StatelessWidget {
                       lastDate: DateTime(2100));
                   dateCtl.text = date.toString();
                 },
+                validator: (value) {
+                  value = dateCtl.text;
+                  if (value.isEmpty) {
+                    return 'Please enter lost date ';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   lostdate = value;
                 },
               ),
-              SizedBox(
-                height: 10,
+              InkWell(
+                onTap: () => getImage(),
+                child: CircleAvatar(
+                  radius: 100,
+                  backgroundImage:
+                      image != null ? FileImage(image) : NetworkImage("null"),
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                textColor: Colors.white,
-                color: Theme.of(context).primaryColor,
-                onPressed: () {
-                  if (_formKey.currentState.validate()) {
-                    _formKey.currentState.save();
-                    _store.addLostItem(LostItem(
-                        name: name,
-                        descreption: descreption,
-                        phone: phone,
-                        lostDate: lostdate));
-                    Navigator.pushNamed(context, '/home');
-                  }
-                },
-                child: Text('Add lost item'),
-              )
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 7.5),
+                  child: Builder(
+                    builder: (context) => FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        textColor: Colors.white,
+                        color: Theme.of(context).primaryColor,
+                        child: Text('Add lost item'),
+                        onPressed: () async {
+                          final modelhud =
+                              Provider.of<ModelHud>(context, listen: false);
+                          modelhud.changeIsLoading(true);
+                          if (_formKey.currentState.validate()) {
+                            var storageimage = FirebaseStorage.instance
+                                .ref()
+                                .child(image.path);
+                            var task = storageimage.putFile(image);
+                            imgUrl = await (await task.onComplete)
+                                .ref
+                                .getDownloadURL();
+
+                            try {
+                              _formKey.currentState.save();
+                              _store.addLostItem(LostItem(
+                                  name: name,
+                                  descreption: descreption,
+                                  phone: phone,
+                                  image: imgUrl,
+                                  lostDate: dateCtl.text));
+                              Navigator.pushNamed(context, '/home');
+                            } catch (e) {
+                              modelhud.changeIsLoading(false);
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text(e.message),
+                              ));
+                            }
+                          }
+                          modelhud.changeIsLoading(false);
+                        }),
+                  ))
             ],
           ),
         ]),

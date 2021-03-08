@@ -28,4 +28,24 @@ class Store {
   Stream<QuerySnapshot> loadUsers() {
     return _firestore.collection(kUserCollication).snapshots();
   }
+
+  addFoundtem(LostItem FoundItem) {
+    _firestore.collection(kFoundItemCollication).add({
+      'image': FoundItem.image,
+      'lostdate': FoundItem.lostDate,
+      'name': FoundItem.name,
+      'descreption': FoundItem.descreption
+    });
+  }
+
+  deleteUser(documentID) {
+    _firestore.collection(kUserCollication).document(documentID).delete();
+  }
+
+  editUser(data, documentID) {
+    _firestore
+        .collection(kUserCollication)
+        .document(documentID)
+        .updateData(data);
+  }
 }
