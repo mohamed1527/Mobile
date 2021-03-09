@@ -71,6 +71,13 @@ class _ManageUsersState extends State<ManageUsers> {
                               },
                               child: Text('Delete'),
                             ),
+                            MyPopupMenuItem(
+                              onClick: () {
+                                Navigator.pushNamed(context, "/chat",
+                                    arguments: users[index]);
+                              },
+                              child: Text('Chat with User'),
+                            ),
                           ]);
                     },
                     child: Stack(

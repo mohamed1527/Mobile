@@ -177,6 +177,9 @@ class _State extends State<Login> {
                                   }
                                 } else {
                                   try {
+                                    // print("emaillll::::");
+                                    // print(email);
+                                    // print(password);
                                     dynamic result =
                                         await _auth.signInWithEmailAndPassword(
                                             email, password);

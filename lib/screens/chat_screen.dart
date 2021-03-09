@@ -6,20 +6,29 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:MOBILE/models/user.dart';
 
 class ChatScreen extends StatefulWidget {
-  // final receiver_id;
-  // ChatScreen(this.receiver_id);
-
+  var receiverid;
+  ChatScreen(BuildContext context) {
+    User reciver = ModalRoute.of(context).settings.arguments;
+    if (reciver != null) {
+      print("haiiiiii");
+      receiverid = reciver.id;
+      print(receiverid);
+      print(reciver.email);
+    } else {
+      receiverid = "CPRM574vWWs0hP6X4pwt";
+    }
+  }
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _ChatScreenState createState() => _ChatScreenState(receiverid);
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final receiver_id = "CPRM574vWWs0hP6X4pwt";
-  // _ChatScreenState(this.receiver_id);
+  var sender_id;
+  var receiver_id;
+  _ChatScreenState(this.receiver_id);
   final myController = TextEditingController();
   final ScrollController scrollController = new ScrollController();
   final _store = Store();
-  var sender_id;
   List<Message> messages = [];
   var firsttime = false;
 
@@ -28,6 +37,8 @@ class _ChatScreenState extends State<ChatScreen> {
   void userId() async {
     final FirebaseUser user = await auth.currentUser();
     sender_id = user.uid;
+    print("herrree");
+    print(receiver_id);
   }
 
   Future getDocs() async {

@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
               '/itemdata': (context) => ItemsData(),
               '/tabs': (context) => TabsScreen(),
               '/home': (context) => Home(),
-              '/chat': (context) => ChatScreen(),
+              '/chat': (context) => ChatScreen(context),
               '/adminHomePage': (context) => AdminHome(),
               '/adduser': (context) => AddUser(),
               '/edituser': (context) => EditUser(),
