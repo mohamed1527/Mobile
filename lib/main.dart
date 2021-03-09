@@ -20,6 +20,7 @@ import 'package:MOBILE/screens/wrapper.dart';
 import 'package:MOBILE/services/auth.dart';
 import 'package:MOBILE/widget/admin/editUser_Form.dart';
 import 'package:MOBILE/widget/admin/manageUsers.dart';
+import 'package:MOBILE/widget/admin/notifications_list.dart';
 import 'package:MOBILE/widget/admin/showUsers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
               '/edituser': (context) => EditUser(),
               '/manageuser': (context) => ManageUsers(),
               '/showuser': (context) => ShowUser(),
+              '/shownotification': (context) => MessagingWidget(),
             },
             home: Wrapper(),
           ),
