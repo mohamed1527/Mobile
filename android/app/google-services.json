@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "572896538528",
+    "firebase_url": "https://miu-lost-and-found-default-rtdb.firebaseio.com",
     "project_id": "miu-lost-and-found",
     "storage_bucket": "miu-lost-and-found.appspot.com"
   },

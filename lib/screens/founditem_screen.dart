@@ -1,11 +1,11 @@
+import 'package:MOBILE/widget/FoundItem.dart';
 import 'package:flutter/material.dart';
-import '../widget/Item.dart';
 
 class FoundItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Item(),
+      body: FoundItems(),
     );
   }
 }

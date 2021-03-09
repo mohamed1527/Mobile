@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:MOBILE/models/message.dart';
 import 'package:MOBILE/services/store.dart';
-import 'package:MOBILE/models/LostItem.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -26,6 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final _store = Store();
   final sender_id = "1";
   final receiver_id = "2";
+  CollectionReference ref = Firestore.instance.collection('events');
 
   @override
   void dispose() {

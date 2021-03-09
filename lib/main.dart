@@ -7,18 +7,20 @@ import 'package:MOBILE/screens/admin/addUser.dart';
 import 'package:MOBILE/screens/admin/adminHome.dart';
 import 'package:MOBILE/screens/chat_screen.dart';
 import 'package:MOBILE/screens/forget_form_screen.dart';
+import 'package:MOBILE/screens/foundItem_details_screen.dart';
 import 'package:MOBILE/screens/founditem_screen.dart';
 import 'package:MOBILE/screens/home.dart';
-import 'package:MOBILE/screens/item_details_screen.dart';
 import 'package:MOBILE/screens/itemsdata_screen.dart';
 import 'package:MOBILE/screens/login_screen.dart';
 import 'package:MOBILE/screens/lost_item_screen.dart';
+import 'package:MOBILE/screens/lostitem_details_screen.dart';
 import 'package:MOBILE/screens/signup_screen.dart';
 import 'package:MOBILE/screens/tabs_screen.dart';
 import 'package:MOBILE/screens/wrapper.dart';
 import 'package:MOBILE/services/auth.dart';
 import 'package:MOBILE/widget/admin/editUser_Form.dart';
 import 'package:MOBILE/widget/admin/manageUsers.dart';
+import 'package:MOBILE/widget/admin/notifications_list.dart';
 import 'package:MOBILE/widget/admin/showUsers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +57,8 @@ class MyApp extends StatelessWidget {
               '/lostform': (context) => LostFormScreen(),
               '/founditem': (context) => FoundItemScreen(),
               '/foundform': (context) => FoundFormScreen(),
-              '/itemdetails': (context) => ItemDetailScreen(),
+              '/itemdetails': (context) => LostItemDetailScreen(),
+              '/founditemdetails': (context) => FoundItemDetailScreen(),
               '/forget': (context) => ForgetPassScreen(),
               '/itemdata': (context) => ItemsData(),
               '/tabs': (context) => TabsScreen(),
@@ -66,6 +69,7 @@ class MyApp extends StatelessWidget {
               '/edituser': (context) => EditUser(),
               '/manageuser': (context) => ManageUsers(),
               '/showuser': (context) => ShowUser(),
+              '/shownotification': (context) => MessagingWidget(),
             },
             home: Wrapper(),
           ),

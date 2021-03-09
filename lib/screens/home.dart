@@ -33,68 +33,75 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: Column(
-          children: [
-            Padding(padding: EdgeInsets.all(8)),
-            Image.asset(
-              'images/MIU.jpg',
-              width: 350.4,
-              height: 200,
-              fit: BoxFit.fill,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: IconButton(
-                        icon: Icon(
-                          Icons.thumb_up,
-                          size: 70,
-                        ),
-                        color: Colors.red[900],
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.pushNamed(context, '/foundform');
-                        }),
-                    flex: 1,
+        body: SafeArea(
+            child: Container(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Padding(padding: EdgeInsets.all(8)),
+              Image.asset(
+                'images/MIU.jpg',
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                fit: BoxFit.fill,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.thumb_up,
+                            size: 70,
+                          ),
+                          color: Colors.red[900],
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, '/foundform');
+                          }),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.thumb_down,
+                            color: Colors.black,
+                            size: 70,
+                          ),
+                          color: Colors.red,
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, '/lostform');
+                          }),
+                      flex: 1,
+                    )
+                  ]),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget>[
+                  Text(
+                    'I Found Something',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
-                  Expanded(
-                    child: IconButton(
-                        icon: Icon(
-                          Icons.thumb_down,
-                          color: Colors.black,
-                          size: 70,
-                        ),
-                        color: Colors.red,
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.pushNamed(context, '/lostform');
-                        }),
-                    flex: 1,
-                  )
-                ]),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const <Widget>[
-                Text(
-                  'I Found Something',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
-                ),
-                Text(
-                  'I Lost Something',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
-                ),
-              ],
-            )
-          ],
-        ),
+                  Text(
+                    'I Lost Something',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
+                  ),
+                ],
+              )
+            ],
+          ),
+        )),
         drawer: MainDrawer());
   }
 }
