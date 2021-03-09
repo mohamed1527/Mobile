@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:MOBILE/models/message.dart';
 import 'package:MOBILE/services/store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:MOBILE/models/user.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -9,24 +11,35 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  List<Message> messages = [];
-
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
-
-  // static List<String> messages = [
-  //   "I wanted to have a button which looks like icon with a text that is able to put at the bottom of the screen",
-  //   "I wanted to have a button which looks like icon with a text that is able to put at the bottom of the screen",
-  //   "xxxx",
-  //   "yyyyyy",
-  //   "llllll",
-  // ];
   final myController = TextEditingController();
   final ScrollController scrollController = new ScrollController();
   final _store = Store();
-  final sender_id = "1";
-  final receiver_id = "2";
-  CollectionReference ref = Firestore.instance.collection('events');
+  var sender_id = "1";
+  var receiver_id = "2";
+  List<Message> messages = [];
+  var firsttime = false;
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  void userId() async {
+    final FirebaseUser user = await auth.currentUser();
+    sender_id = user.uid;
+    // print(uid);
+  }
+
+  Future getDocs() async {
+    QuerySnapshot querySnapshot =
+        await Firestore.instance.collection("Messages").getDocuments();
+    for (int i = 0; i < querySnapshot.documents.length; i++) {
+      var a = querySnapshot.documents[i];
+      if (sender_id == a['sender_id'] || sender_id == a['receiver_id']) {
+        Message message =
+            Message(a['message'], a['sender_id'], a['receiver_id']);
+        messages.add(message);
+      }
+      // print(a['message']);
+    }
+  }
 
   @override
   void dispose() {
@@ -37,6 +50,11 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (firsttime == false) {
+      firsttime = true;
+      getDocs();
+    }
+
     return Scaffold(
       // resizeToAvoidBottomPadding: false,
       //resizeToAvoidBottomInset: false,
@@ -117,17 +135,16 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  scroll() {
+    scrollController.animateTo(scrollController.position.maxScrollExtent + 1000,
+        duration: const Duration(milliseconds: 50), curve: Curves.easeOut);
+  }
+
   sendMessage() {
     if (myController.text.isNotEmpty) {
-      // messages.add(myController.text);
-      // CartDetail(productId: 1, quantity: 2)
       Message message = Message(myController.text, sender_id, receiver_id);
       messages.add(message);
-
-      scrollController.animateTo(
-          scrollController.position.maxScrollExtent + 100,
-          duration: const Duration(milliseconds: 50),
-          curve: Curves.easeOut);
+      scroll();
       myController.clear();
       _store.addMessage(message);
     }
