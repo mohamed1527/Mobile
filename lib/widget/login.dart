@@ -159,6 +159,7 @@ class _State extends State<Login> {
                                           .signInWithEmailAndPassword(
                                               email, password);
                                       modelhud.changeIsLoading(false);
+
                                       Navigator.pushNamed(
                                           context, '/adminHomePage');
                                     } catch (e) {
@@ -179,8 +180,10 @@ class _State extends State<Login> {
                                     dynamic result =
                                         await _auth.signInWithEmailAndPassword(
                                             email, password);
+
                                     if (result != null) {
                                       Navigator.pushNamed(context, '/home');
+                                      print(result);
                                     }
                                   } catch (e) {
                                     modelhud.changeIsLoading(false);

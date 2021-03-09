@@ -41,7 +41,7 @@ class Store {
   addFoundtem(LostItem foundItem) {
     _firestore.collection(kFoundItemCollication).add({
       'image': foundItem.image,
-      'lostdate': foundItem.lostDate,
+      'foundate': foundItem.lostDate,
       'name': foundItem.name,
       'descreption': foundItem.descreption,
       'phone': foundItem.phone,
