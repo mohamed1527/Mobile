@@ -15,6 +15,6 @@ const klostdate = 'lostdate';
 const klostname = 'name';
 const kFoundname = 'name';
 const kFoundDescreption = 'descreption';
-const kFounddate = 'founddate';
+const kFounddate = 'foundate';
 const kFoundImage = 'image';
 const kFoundPhone = 'phone';
