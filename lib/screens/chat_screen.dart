@@ -6,16 +6,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:MOBILE/models/user.dart';
 
 class ChatScreen extends StatefulWidget {
+  // final receiver_id;
+  // ChatScreen(this.receiver_id);
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final receiver_id = "CPRM574vWWs0hP6X4pwt";
+  // _ChatScreenState(this.receiver_id);
   final myController = TextEditingController();
   final ScrollController scrollController = new ScrollController();
   final _store = Store();
-  var sender_id = "1";
-  var receiver_id = "2";
+  var sender_id;
   List<Message> messages = [];
   var firsttime = false;
 
@@ -24,10 +28,10 @@ class _ChatScreenState extends State<ChatScreen> {
   void userId() async {
     final FirebaseUser user = await auth.currentUser();
     sender_id = user.uid;
-    // print(uid);
   }
 
   Future getDocs() async {
+    userId();
     QuerySnapshot querySnapshot =
         await Firestore.instance.collection("Messages").getDocuments();
     for (int i = 0; i < querySnapshot.documents.length; i++) {
